@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "995723418350",
+    "firebase_url": "https://tailorflow-17625-default-rtdb.firebaseio.com",
+    "project_id": "tailorflow-17625",
+    "storage_bucket": "tailorflow-17625.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:995723418350:android:f118db4467792b37bbf1ff",
+        "android_client_info": {
+          "package_name": "lcom.aistudio.tailorshop.hqpwks"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "995723418350-2g2ilju4dda51uhihjtj43h1850qtfgf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAa5BGNTWkxw17HrtGa1X5JRdVAM9xHMec"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "995723418350-2g2ilju4dda51uhihjtj43h1850qtfgf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

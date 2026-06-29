@@ -1,0 +1,6 @@
+{
+  "name": "Tailor Shop Management",
+  "description": "An offline-first, cloud-synced tailor shop workspace with custom measurement forms, customer ledger tracking, stock inventory control, CSV transfer, and beautiful shareable visual receipts.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
