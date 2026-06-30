@@ -43,11 +43,6 @@ jobs:
       - name: Grant Execute Permission to Gradlew
         run: chmod +x gradlew
 
-      - name: Download Clean Gradle Wrapper Jar
-        run: |
-          mkdir -p gradle/wrapper
-          curl -sLo gradle/wrapper/gradle-wrapper.jar https://github.com/gradle/gradle/raw/v9.3.1/gradle/wrapper/gradle-wrapper.jar
-
       - name: Setup Environment Variables
         run: |
           touch .env
@@ -63,11 +58,11 @@ jobs:
           fi
 
       - name: Build Debug APK
-        if: "${{ (github.event.inputs.build_type == 'debug' || github.event.inputs.build_type == null) && (github.event.inputs.output_format == 'apk' || github.event.inputs.output_format == 'both' || github.event.inputs.output_format == null) }}"
+        if: "${{ (github.event.inputs.build_type == 'debug' || github.event.inputs.build_type == null) && (github.event.inputs.output_format == 'apk' || github.event.inputs.output_format == 'both') }}"
         run: ./gradlew assembleDebug
 
       - name: Build Debug AAB
-        if: "${{ (github.event.inputs.build_type == 'debug' || github.event.inputs.build_type == null) && (github.event.inputs.output_format == 'aab' || github.event.inputs.output_format == 'both' || github.event.inputs.output_format == null) }}"
+        if: "${{ (github.event.inputs.build_type == 'debug' || github.event.inputs.build_type == null) && (github.event.inputs.output_format == 'aab' || github.event.inputs.output_format == 'both') }}"
         run: ./gradlew bundleDebug
 
       - name: Build Release APK
