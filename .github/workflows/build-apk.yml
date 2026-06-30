@@ -58,11 +58,11 @@ jobs:
           fi
 
       - name: Build Debug APK
-        if: "${{ (github.event.inputs.build_type == 'debug' || github.event.inputs.build_type == null) && (github.event.inputs.output_format == 'apk' || github.event.inputs.output_format == 'both') }}"
+        if: "${{ (github.event.inputs.build_type == 'debug' || github.event.inputs.build_type == null) && (github.event.inputs.output_format == 'apk' || github.event.inputs.output_format == 'both' || github.event.inputs.output_format == null) }}"
         run: ./gradlew assembleDebug
 
       - name: Build Debug AAB
-        if: "${{ (github.event.inputs.build_type == 'debug' || github.event.inputs.build_type == null) && (github.event.inputs.output_format == 'aab' || github.event.inputs.output_format == 'both') }}"
+        if: "${{ (github.event.inputs.build_type == 'debug' || github.event.inputs.build_type == null) && (github.event.inputs.output_format == 'aab' || github.event.inputs.output_format == 'both' || github.event.inputs.output_format == null) }}"
         run: ./gradlew bundleDebug
 
       - name: Build Release APK
