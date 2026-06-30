@@ -3970,7 +3970,7 @@ fun StaffListLayout(
                         OutlinedTextField(
                             value = pendingItemName,
                             onValueChange = { pendingItemName = it },
-                            label = { Text("Size/Item Name (e.g. Large)") },
+                            label = { Text("Name item") },
                             modifier = Modifier.weight(1.3f),
                             singleLine = true
                         )
@@ -6589,10 +6589,14 @@ fun BackupTab(
         ) {
             if (user != null) {
                 var showDeleteConfirmDialog by remember { mutableStateOf(false) }
+                var deleteConfirmInputText by remember { mutableStateOf("") }
 
                 if (showDeleteConfirmDialog) {
                     AlertDialog(
-                        onDismissRequest = { showDeleteConfirmDialog = false },
+                        onDismissRequest = { 
+                            showDeleteConfirmDialog = false
+                            deleteConfirmInputText = ""
+                        },
                         title = {
                             Row(
                                 verticalAlignment = Alignment.CenterVertically,
@@ -6614,12 +6618,29 @@ fun BackupTab(
                                     fontSize = 13.sp,
                                     color = Color.Gray
                                 )
+                                Spacer(modifier = Modifier.height(8.dp))
+                                Text(
+                                    "To prevent children or accidental deletion, please type 'CONFIRM' below to unlock the delete action:",
+                                    fontWeight = FontWeight.Bold,
+                                    fontSize = 13.sp,
+                                    color = MaterialTheme.colorScheme.error
+                                )
+                                OutlinedTextField(
+                                    value = deleteConfirmInputText,
+                                    onValueChange = { deleteConfirmInputText = it },
+                                    label = { Text("Enter CONFIRM to verify") },
+                                    placeholder = { Text("Type 'CONFIRM'") },
+                                    modifier = Modifier.fillMaxWidth().testTag("delete_account_confirm_input"),
+                                    singleLine = true
+                                )
                             }
                         },
                         confirmButton = {
+                            val isConfirmed = deleteConfirmInputText.trim() == "CONFIRM"
                             Button(
                                 onClick = {
                                     showDeleteConfirmDialog = false
+                                    deleteConfirmInputText = ""
                                     viewModel.deleteAccount { success, errorMsg ->
                                         if (success) {
                                             Toast.makeText(context, "Account and data purged completely.", Toast.LENGTH_LONG).show()
@@ -6628,13 +6649,20 @@ fun BackupTab(
                                         }
                                     }
                                 },
-                                colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.error)
+                                enabled = isConfirmed,
+                                colors = ButtonDefaults.buttonColors(
+                                    containerColor = MaterialTheme.colorScheme.error,
+                                    disabledContainerColor = MaterialTheme.colorScheme.error.copy(alpha = 0.4f)
+                                )
                             ) {
                                 Text("Yes, Delete Completely", fontWeight = FontWeight.Bold)
                             }
                         },
                         dismissButton = {
-                            TextButton(onClick = { showDeleteConfirmDialog = false }) {
+                            TextButton(onClick = { 
+                                showDeleteConfirmDialog = false
+                                deleteConfirmInputText = ""
+                            }) {
                                 Text("Cancel")
                             }
                         }
@@ -6989,7 +7017,7 @@ fun BackupTab(
                                     ) {
                                         Icon(Icons.Default.Engineering, null)
                                         Spacer(modifier = Modifier.width(8.dp))
-                                        Text("Open Staff & Wages Control Station", fontWeight = FontWeight.Bold)
+                                        Text("Manage Staff", fontWeight = FontWeight.Bold)
                                     }
                                     
 
