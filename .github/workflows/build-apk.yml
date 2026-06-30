@@ -1,4 +1,3 @@
-
 name: Build APK
 
 on:
@@ -14,6 +13,15 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
+      
+      # ADD THIS IF YOUR GRADLEW IS NOT AT THE ROOT
+      # - name: Build with Gradle
+      #   run: ./gradlew assembleDebug
+      #   working-directory: ./your-folder-name-here 
+
+      # IF GRADLEW IS AT THE ROOT, ENSURE IT IS EXECUTABLE:
+      - name: Make gradlew executable
+        run: chmod +x ./gradlew
+        
       - name: Build with Gradle
         run: ./gradlew assembleDebug
-        
